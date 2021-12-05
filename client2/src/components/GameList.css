@@ -1,0 +1,24 @@
+.game-links{
+	color: 	#98FB98;
+	text-align: center;
+	font-size: 3rem;
+	border-style: solid;
+	border-radius: 25px;
+	border-color:#98FB98;
+	border-width: 1px;
+	background-color: black;
+    margin: auto;
+    padding: 10px;
+	width: 50%;
+        font-family: 'Electrolize', sans-serif;
+}
+.game-links:hover{
+    box-shadow: 0 4px 8px 0 rgba(255,255,0,0.4);
+    cursor:pointer;
+    color:yellow;
+    
+}
+
+.list{
+    list-style-type: none;
+}

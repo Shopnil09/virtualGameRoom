@@ -3,6 +3,10 @@ background-image: url("../img/ICSI_418Y_Website_background_design.jpg");
 background-attachment: fixed;
 background-size: cover;
 background-size: 50% 100%;
+margin: 0;
+padding: 0;
+text-align: center;
+font-family: 'Electrolize', sans-serif;
 }
 a:link{
 color: #98FB98;
