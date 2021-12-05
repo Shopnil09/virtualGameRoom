@@ -1,0 +1,206 @@
+body{
+    background-image: url("ICSI_418Y_Website_background_design.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-size: 50% 100%;
+    }
+    a:link{
+    color: #98FB98;
+    }
+    a:visited{
+    color: white;
+    }
+    a:hover{
+    color: yellow;
+    }
+    a:active{
+    color: red;
+    }
+    div.title{
+            font-family: 'Electrolize', sans-serif;
+        color:#d4af37;
+        text-align: center;
+        font-size: 200%;
+        margin: auto;
+        width: 60%;
+    }
+    div.select{
+            font-family: 'Electrolize', sans-serif;
+        color: 	#98FB98;
+        text-align: center;
+        font-size: 110%;
+        border-style: solid;
+        border-radius: 25px;
+        border-color:#0073cf;
+        border-width: 3px;
+        background-color: black;
+        margin: auto;
+        width: 40%;
+    }
+    div.games{
+        color: 	#98FB98;
+        text-align: center;
+        font-size: 100%;
+        border-style: solid;
+        border-radius: 25px;
+        border-color:#0073cf;
+        border-width: 3px;
+        background-color: black;
+        padding-top: 10px;
+        margin: auto;
+        width: 30%;
+            font-family: 'Electrolize', sans-serif;
+    }
+	.button {
+  background-color: #0073cf; 
+  border-radius: 50%;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer; 
+}
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.button:hover {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #0073cf;
+}
+    
+    div.space{
+        
+        margin: auto;
+        
+    }
+     
+        /* 3*3 Grid */
+        #b1, #b2, #b3, #b4, #b5,
+        #b6, #b7, #b8, #b9 {
+            width: 80px;
+            height: 52px;
+            margin: auto;
+            border: 1px solid gray;
+            border-radius: 6px;
+            font-size: 30px;
+            text-align: center;
+        }
+     
+        /* Reset Button */
+        #but {
+            box-sizing: border-box;
+            width: 95px;
+            height: 40px;
+            border: 1px solid dodgerblue;
+            margin: auto;
+            border-radius: 4px;
+            font-family: Verdana,
+                Geneva, Tahoma, sans-serif;
+     
+            background-color: dodgerblue;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        #wintable,#wintd{
+            border: 2px solid blue;
+            background-color:lightblue;
+            border-collapse: collapse;
+            width: 500px;
+        }
+        #wintd{
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        #winalert{
+            position:fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -150px;
+            margin-left: -235px;
+        }
+        #alertrem{
+            display: none;
+        }
+
+        div.chat{
+            margin: 0;
+            padding-bottom: 3rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        #chatform { 
+            background: rgba(0, 0, 0, 0.15); 
+            padding: 0.25rem; position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            display: flex; 
+            height: 3rem; 
+            box-sizing: border-box; 
+            backdrop-filter: blur(10px); 
+        }
+        #input { 
+            border: none; 
+            padding: 0 1rem; 
+            flex-grow: 1; 
+            border-radius: 2rem; 
+            margin: 0.25rem; 
+        }
+
+      #input:focus { 
+          outline: none; 
+        }
+
+        #form > button { 
+            background: #333; 
+            border: none; 
+            padding: 0 1rem; 
+            margin: 0.25rem; 
+            border-radius: 3px; 
+            outline: none; 
+            color: #fff; 
+        }
+        
+        #messages { 
+            list-style-type: none;
+            margin: 0;
+            padding: 0; 
+        }
+
+      #messages > li { 
+        padding: 0.5rem 1rem; 
+    }
+
+      #messages > li:nth-child(odd) { 
+          background: #efefef; 
+        }
+
+        
+        div.goback{
+            color: 	#98FB98;
+            text-align: center;
+            font-size: 100%;
+            border-style: solid;
+            border-radius: 25px;
+            border-color:#0073cf;
+            border-width: 3px;
+            background-color: black;
+            margin: auto;
+            width: 20%;
+                font-family: 'Electrolize', sans-serif;
+        }
+        div.goback:hover{
+            box-shadow: 0 4px 8px 0 rgba(255,255,0,0.4);
+            cursor:pointer;
+            color:yellow;
+            
+        }
+     
+       

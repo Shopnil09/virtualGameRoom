@@ -45,7 +45,7 @@ router.post('/login', async (req, res) => {
 
         //if login is successful 
         const payload = {id: user._id, name: user.username}
-        const token = jwt.sign(payload, process.env.TOKEN_KEY, {expiresIn: '15s'}); 
+        const token = jwt.sign(payload, process.env.TOKEN_KEY, {expiresIn: '180s'}); 
         res.json({token}); 
 
     } catch (error) {

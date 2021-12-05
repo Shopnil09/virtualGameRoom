@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml">
+<head>
+<style = "text/css">
+</style>
+<link type = "text/css" rel = "stylesheet" href = "Rock_Paper_Scissors.css">
+<script src = "RockPaperScissors.js"></script>
+<title> Rock,Paper & Scissors </title>
+</head>
+<body>
+<div class = "title">
+  <h1>
+  <u>
+  Rock, Paper & Scissors
+  </u>
+  </h1>
+</div> 
+    <div class="games">
+   
+						<img src = "Rock.jpg">
+                        <Button class = "buttonRPS" id="rockbutton" onclick="RPSRound('rock')">Rock</Button>
+
+						<img src = "Paper.jpg">
+                        <Button class = "buttonRPS" id="paperbutton" onclick="RPSRound('paper')">Paper</Button>
+
+						<img src = "Scissors.jpg">
+                        <Button class = "buttonRPS" id="scissorbutton" onclick="RPSRound('scissors')">Scissors</Button>
+
+            
+    </div>
+	<div class = "space">
+	.
+	</div>
+    <div class = "select" id = "player_selector">
+        <button class = "button" id="oneplayer" value="1" onclick="PlayerSelection(this)">Single Player</button>
+        <button class = "button" id="twoplayer" value="0" onclick="PlayerSelection(this)">Two Players</button>
+       </div> 
+       <div class = "space">
+         <br></div>
+       </div>
+       <div class = "goback" onclick="window.open('../RoyalFlushMenu.html','_self');">
+         Main Menu
+           </div>
+</body>
+</html>

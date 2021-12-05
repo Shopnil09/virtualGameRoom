@@ -1,0 +1,121 @@
+<!--
+  Michael Raffel
+  10/13/21
+  
+  Basic html page that runs ConnectFour.js
+-->
+<!--
+  Updated with added funcionalities by Chris Perkins Yan
+  10/13/21 test
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang = "en" xmlns = "http://www.w3.org/1999/xhtml">
+<head>
+<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+<style = "text/css">
+</style>
+<link type = "text/css" rel = "stylesheet" href = "ConnectFour.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet" >
+<title> Connect Four </title>
+<script src="ConnectFour.js"></script>
+</head>
+<body onload= "initializeBoard()">
+  <div class = "title">
+    <h1>
+    <u>
+    Connect Four
+    </u>
+    </h1>
+  </div>
+  
+  <div class = "select" id = "instructions" onmouseover = "InstructionHover('TicTacToe')" onmouseleave="InstructionHover('remove')" >
+    Instructions
+    </div>
+    <div class = "space">
+    </div>
+    <div class = "games">
+    <input type = "text" class = "c1"  id = "c1r6" onclick = "GameRound(0);" onmouseover="highlightColumn('c1')" onmouseout="remHighlight('c1')" readonly>
+    <input type = "text" class = "c2"  id = "c2r6" onclick = "GameRound(1);" onmouseover="highlightColumn('c2')" onmouseout="remHighlight('c2')" readonly>
+    <input type = "text" class = "c3"  id = "c3r6" onclick = "GameRound(2);" onmouseover="highlightColumn('c3')" onmouseout="remHighlight('c3')" readonly>
+    <input type = "text" class = "c4"  id = "c4r6" onclick = "GameRound(3);" onmouseover="highlightColumn('c4')" onmouseout="remHighlight('c4')" readonly>
+    <input type = "text" class = "c5"  id = "c5r6" onclick = "GameRound(4);" onmouseover="highlightColumn('c5')" onmouseout="remHighlight('c5')" readonly>
+    <input type = "text" class = "c6"  id = "c6r6" onclick = "GameRound(5);" onmouseover="highlightColumn('c6')" onmouseout="remHighlight('c6')" readonly>
+    <input type = "text" class = "c7"  id = "c7r6" onclick = "GameRound(6);" onmouseover="highlightColumn('c7')" onmouseout="remHighlight('c7')" readonly>
+    <br><br>
+    <input type = "text" class = "c1"  id = "c1r5" onclick = "GameRound(0);" onmouseover="highlightColumn('c1')" onmouseout="remHighlight('c1')" readonly>
+    <input type = "text" class = "c2"  id = "c2r5" onclick = "GameRound(1);" onmouseover="highlightColumn('c2')" onmouseout="remHighlight('c2')" readonly>
+    <input type = "text" class = "c3"  id = "c3r5" onclick = "GameRound(2);" onmouseover="highlightColumn('c3')" onmouseout="remHighlight('c3')" readonly>
+    <input type = "text" class = "c4"  id = "c4r5" onclick = "GameRound(3);" onmouseover="highlightColumn('c4')" onmouseout="remHighlight('c4')" readonly>
+    <input type = "text" class = "c5"  id = "c5r5" onclick = "GameRound(4);" onmouseover="highlightColumn('c5')" onmouseout="remHighlight('c5')" readonly>
+    <input type = "text" class = "c6"  id = "c6r5" onclick = "GameRound(5);" onmouseover="highlightColumn('c6')" onmouseout="remHighlight('c6')" readonly>
+    <input type = "text" class = "c7"  id = "c7r5" onclick = "GameRound(6);" onmouseover="highlightColumn('c7')" onmouseout="remHighlight('c7')" readonly>
+    <br><br>
+    <input type = "text" class = "c1"  id = "c1r4" onclick = "GameRound(0);" onmouseover="highlightColumn('c1')" onmouseout="remHighlight('c1')" readonly>
+    <input type = "text" class = "c2"  id = "c2r4" onclick = "GameRound(1);" onmouseover="highlightColumn('c2')" onmouseout="remHighlight('c2')" readonly>
+    <input type = "text" class = "c3"  id = "c3r4" onclick = "GameRound(2);" onmouseover="highlightColumn('c3')" onmouseout="remHighlight('c3')" readonly>
+    <input type = "text" class = "c4"  id = "c4r4" onclick = "GameRound(3);" onmouseover="highlightColumn('c4')" onmouseout="remHighlight('c4')" readonly>
+    <input type = "text" class = "c5"  id = "c5r4" onclick = "GameRound(4);" onmouseover="highlightColumn('c5')" onmouseout="remHighlight('c5')" readonly>
+    <input type = "text" class = "c6"  id = "c6r4" onclick = "GameRound(5);" onmouseover="highlightColumn('c6')" onmouseout="remHighlight('c6')" readonly>
+    <input type = "text" class = "c7"  id = "c7r4" onclick = "GameRound(6);" onmouseover="highlightColumn('c7')" onmouseout="remHighlight('c7')" readonly>
+    <br><br>
+    <input type = "text" class = "c1"  id = "c1r3" onclick = "GameRound(0);" onmouseover="highlightColumn('c1')" onmouseout="remHighlight('c1')" readonly>
+    <input type = "text" class = "c2"  id = "c2r3" onclick = "GameRound(1);" onmouseover="highlightColumn('c2')" onmouseout="remHighlight('c2')" readonly>
+    <input type = "text" class = "c3"  id = "c3r3" onclick = "GameRound(2);" onmouseover="highlightColumn('c3')" onmouseout="remHighlight('c3')" readonly>
+    <input type = "text" class = "c4"  id = "c4r3" onclick = "GameRound(3);" onmouseover="highlightColumn('c4')" onmouseout="remHighlight('c4')" readonly>
+    <input type = "text" class = "c5"  id = "c5r3" onclick = "GameRound(4);" onmouseover="highlightColumn('c5')" onmouseout="remHighlight('c5')" readonly>
+    <input type = "text" class = "c6"  id = "c6r3" onclick = "GameRound(5);" onmouseover="highlightColumn('c6')" onmouseout="remHighlight('c6')" readonly>
+    <input type = "text" class = "c7"  id = "c7r3" onclick = "GameRound(6);" onmouseover="highlightColumn('c7')" onmouseout="remHighlight('c7')" readonly>
+    <br><br>
+    <input type = "text" class = "c1"  id = "c1r2" onclick = "GameRound(0);" onmouseover="highlightColumn('c1')" onmouseout="remHighlight('c1')" readonly>
+    <input type = "text" class = "c2"  id = "c2r2" onclick = "GameRound(1);" onmouseover="highlightColumn('c2')" onmouseout="remHighlight('c2')" readonly>
+    <input type = "text" class = "c3"  id = "c3r2" onclick = "GameRound(2);" onmouseover="highlightColumn('c3')" onmouseout="remHighlight('c3')" readonly>
+    <input type = "text" class = "c4"  id = "c4r2" onclick = "GameRound(3);" onmouseover="highlightColumn('c4')" onmouseout="remHighlight('c4')" readonly>
+    <input type = "text" class = "c5"  id = "c5r2" onclick = "GameRound(4);" onmouseover="highlightColumn('c5')" onmouseout="remHighlight('c5')" readonly>
+    <input type = "text" class = "c6"  id = "c6r2" onclick = "GameRound(5);" onmouseover="highlightColumn('c6')" onmouseout="remHighlight('c6')" readonly>
+    <input type = "text" class = "c7"  id = "c7r2" onclick = "GameRound(6);" onmouseover="highlightColumn('c7')" onmouseout="remHighlight('c7')" readonly>
+    <br><br>
+    <input type = "text" class = "c1"  id = "c1r1" onclick = "GameRound(0);" onmouseover="highlightColumn('c1')" onmouseout="remHighlight('c1')" readonly>
+    <input type = "text" class = "c2"  id = "c2r1" onclick = "GameRound(1);" onmouseover="highlightColumn('c2')" onmouseout="remHighlight('c2')" readonly>
+    <input type = "text" class = "c3"  id = "c3r1" onclick = "GameRound(2);" onmouseover="highlightColumn('c3')" onmouseout="remHighlight('c3')" readonly>
+    <input type = "text" class = "c4"  id = "c4r1" onclick = "GameRound(3);" onmouseover="highlightColumn('c4')" onmouseout="remHighlight('c4')" readonly>
+    <input type = "text" class = "c5"  id = "c5r1" onclick = "GameRound(4);" onmouseover="highlightColumn('c5')" onmouseout="remHighlight('c5')" readonly>
+    <input type = "text" class = "c6"  id = "c6r1" onclick = "GameRound(5);" onmouseover="highlightColumn('c6')" onmouseout="remHighlight('c6')" readonly>
+    <input type = "text" class = "c7"  id = "c7r1" onclick = "GameRound(6);" onmouseover="highlightColumn('c7')" onmouseout="remHighlight('c7')" readonly>
+    <br><br>
+    </div>
+    <div class = "space">
+      :  :
+      </div>
+    <div class = "select" id = "player_selector">
+     <button class = "button" id="oneplayer" value="1" onclick="PlayerSelection(this)">Single Player</button>
+     <button class = "button" id="twoplayer" value="0" onclick="PlayerSelection(this)">Two Players</button>
+    </div> 
+    <div class = "space">
+      <br></div>
+    </div>
+    <div class = "goback" onclick="window.open('RoyalFlushMenu.html','_self');">
+      Main Menu
+        </div>
+    <div id = "alertrem">
+      <div id = "winalert">
+        <table id = "wintable">
+          <tr id = "wintr">
+            <td id = "wintd"><p id = "whowins"></p></td>
+            <td><button id = "but" onclick = "reset()">
+              reset
+              </button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    
+  
+
+
+
+</body>
+
+</html>

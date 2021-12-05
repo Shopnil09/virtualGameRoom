@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml">
+<head>
+<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+<style = "text/css">
+</style>
+<link type = "text/css" rel = "stylesheet" href = "TicTacToe.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+<title> TicTacToe </title>
+<script src = "TicTacToe2.js"></script>
+<script src = "Chatbox.js"></script>
+</head>
+<body>
+<div class = "title">
+  <h1>
+  <u>
+  TicTacToe
+  </u>
+  </h1>
+</div>  
+<div class = "select" id = "instructions" onmouseover = "InstructionHover('TicTacToe')" onmouseleave="InstructionHover('remove')" >
+Instructions
+</div>
+<div class = "space">
+</div>
+<div class = "games">
+<input type = "text" id = "b1" onclick = "GameRound(0);" readonly>
+<input type = "text" id = "b2" onclick = "GameRound(1);" readonly>
+<input type = "text" id = "b3" onclick = "GameRound(2);" readonly>
+<br><br>
+<input type = "text" id = "b4" onclick = "GameRound(3);" readonly>
+<input type = "text" id = "b5" onclick = "GameRound(4);" readonly>
+<input type = "text" id = "b6" onclick = "GameRound(5);" readonly>
+<br><br>
+<input type = "text" id = "b7" onclick = "GameRound(6);" readonly>
+<input type = "text" id = "b8" onclick = "GameRound(7);" readonly>
+<input type = "text" id = "b9" onclick = "GameRound(8);" readonly>
+<br><br><br>
+</div>
+<div class = "space">
+  :  :
+  </div>
+<div class = "select" id = "player_selector">
+ <button class = "button" id="oneplayer" value="1" onclick="PlayerSelection(this)">Single Player</button>
+ <button class = "button" id="twoplayer" value="0" onclick="PlayerSelection(this)">Two Players</button>
+</div> 
+
+<div class = "space">
+  <br></div>
+</div>
+<div class = "goback" onclick="window.open('RoyalFlushMenu.html','_self');">
+  Main Menu
+    </div>
+
+<div id="chat">
+	<div id="chat-messages">
+
+	<form id="chatform" method="post">
+    <ul id="messages"></ul>
+		<input type="text" id="input" placeholder="Enter a message..." maxlength="500" autocomplete="off">
+		<button type="submit">Send</button>
+ 	</form>
+</div>
+</div>
+<div id = "alertrem">
+  <div id = "winalert">
+    <table id = "wintable">
+      <tr id = "wintr">
+        <td id = "wintd"><p id = "whowins"></p></td>
+        <td><button id = "but" onclick = "reset()">
+          reset
+          </button></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
