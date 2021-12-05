@@ -10,7 +10,25 @@ Connect Four game that utilizes simple html commands
 is implemented properly via css/html.
 Supports local play where two players take turns at the computer 
 choosing spaces (referred to as 0-8), as well as basic AI.
+
+------------
+
+Julian/Michael socket update, local multiple-client multiplayer
+Corresponding server is C4server.js
+-----------------------------------------------------------------------------
+* To test: 
+* 1- cd to "ConnectFour" folder
+* 2- enter "npm install" into the terminal
+* 3- enter "npm install -g nodemon" into the terminal
+* 4- enter "nodemon C4server.js" into the terminal, without the quotes
+* 5- Then, open two tabs at address http://localhost:3000/ConnectFour.html
+* -----------------------------------------------------------------------------
+
 */
+
+
+// setting up the socket
+let socket = io();
 
 
 // number of columns on the board
@@ -28,6 +46,41 @@ var isPlayingAgain;
 // determines whether to play with a human or AI
 var isSinglePlayer = false;
 
+//listens to server for whether to play singleplayer or multiplayer, 
+//updates for all clients
+socket.on('singleplayer?', (data) => {
+    isSingleplayer = data;
+    document.getElementById("oneplayer").disabled = true;
+    document.getElementById("twoplayer").disabled = true;
+	document.getElementById("button").disabled = true;
+});
+
+//listens for server and updates turn for all clients
+socket.on('nextTurn', (data) => {
+    playerTurn = data;
+});
+//updates board space for all clients (game-logic)
+socket.on('updateSpace', (data) => {
+    board[data.col][data.row] = data.playerTurn;
+});
+
+//updates board space for all clients (user interface)
+socket.on('updateCSS', (data) => {
+    document.getElementById(data.val).style.backgroundColor = data.color;
+    document.getElementById(data.val).setAttribute("oldcolor",document.getElementById(data.val).style.backgroundColor);
+});
+
+//updates retry variable for all clients
+socket.on('reset', () => {
+    location.reload();
+});
+
+//triggers gameOverCheck for all clients
+socket.on('gameOverCheck', () => {
+    isGameOver = gameOverCheck();
+});
+
+// initializes board
 function initializeBoard()
 {
     // [column][row]
@@ -78,6 +131,7 @@ function displayBoard()
     alert(alertDisplayString);
 }
 
+// updates the CSS for the board
 function updateBoard(column,row){
     var color;
     if (playerTurn ==1){
@@ -116,9 +170,14 @@ function updateBoard(column,row){
             remHighlight("c7");
             break;
     }
-    document.getElementById(val).style.backgroundColor = color;
-    document.getElementById(val).setAttribute("oldcolor",document.getElementById(val).style.backgroundColor);
+    socket.emit('updateCSS', {
+        val: val, 
+        color: color
+    });
 }
+
+// Checks which row is being updated in the updateBoard() function.
+// Returns the corresponding identifier for the CSS to update
 function checkRow(row){
     switch(row){
         case 0:
@@ -158,6 +217,12 @@ function dropPiece(column, player)
         if (board[column][i] == null)
         {
             board[column][i] = player;
+            //sends board space and placed symbol to the server
+            socket.emit('updateSpace', {
+             col: column,
+             row: i, 
+             playerTurn: player
+            });
             updateBoard(column,i);
             return true;
         }
@@ -467,71 +532,11 @@ function boardFullCheck()
     return true;
 }
 
-// Main game loop.
-// Plays game once, then asks if the user wants to play again.
-/*do
-{
-    // Initializes game, player 1 goes first.
-    // Resets isGameOver to false.
-    initializeBoard();
-    isGameOver = false;
-    playerTurn = 1;
 
 
-    while(!isGameOver)
-    {
-        // AI takes turn for player 2 if playing singleplayer
-        if (isSinglePlayer && (playerTurn == 2))
-        {
-            while (!dropPiece(Math.floor(Math.random() * columnNumber), playerTurn))
-            {
-                // "AI" repeats selections until a valid one is made.
-            }
-        }
-        else 
-        {
-            let columnSelection = prompt("Player "+ playerTurn + "'s turn.\n" + 
-                "Select a unfilled column between 0 and " + (columnNumber - 1) + ".");
-            while (!dropPiece(columnSelection, playerTurn))
-            {
-                columnSelection = prompt("This column is full.\n" + 
-                    "Select a unfilled column between 0 and " + (columnNumber - 1) + ".");
-            }
-        }
-        //alert("placed!");
-
-        isGameOver = gameOverCheck();
-
-        if(playerTurn == 1)
-        {
-            playerTurn = 2;
-        }
-        else
-        {
-            if(playerTurn == 2)
-            {
-                playerTurn = 1;
-            }
-        }  
-
-    }
-
-    let answer = prompt("Do you want to play again?\n" + 
-    "Enter \"yes\" or \"no\".");
-
-    if (answer == "yes")
-    {
-        isPlayingAgain = true;
-    }
-    else
-    {
-        isPlayingAgain = false;
-    }
-}
-while(isPlayingAgain == true);*/
-
-
+// the gameflow for each round
 function GameRound(col){
+    socket.emit('pchoice',col);
     if (isSinglePlayer && (playerTurn == 2))
     {
         while (!dropPiece(Math.floor(Math.random() * columnNumber), playerTurn))
@@ -542,9 +547,10 @@ function GameRound(col){
         dropPiece(col, playerTurn);
     }
     isGameOver = gameOverCheck();
+    socket.emit('gameOverCheck');
 
-    if(isGameOver){
-    }
+    if(!isGameOver){
+    
 
         if(playerTurn == 1)
         {
@@ -557,14 +563,16 @@ function GameRound(col){
                 playerTurn = 1;
             }
         }  
-    
+
+        socket.emit('nextTurn', playerTurn);
+
         if(isSinglePlayer && playerTurn==2){
             GameRound();
         }
-    
+    }
 }
 
-
+// highlights column when hovered over
 function highlightColumn(classname){
     var col = document.getElementsByClassName(classname);
     var n = col.length;
@@ -579,6 +587,8 @@ function highlightColumn(classname){
     }
 
 }
+
+// removes highlight 
 function remHighlight(classname){
     var col = document.getElementsByClassName(classname);
     var n = col.length;
@@ -588,16 +598,21 @@ function remHighlight(classname){
 
 }
 
+// changes between single and multiplayer depending on button press
 function PlayerSelection(button){
     if(button.value == "1"){
         isSinglePlayer = true;
     }
+    //sends choice to server
+    socket.emit('singleplayer?', singleplayer);
+
     document.getElementById("oneplayer").disabled = true;
     document.getElementById("twoplayer").disabled = true;
 	document.getElementById("button").disabled = true;
 
 }
 
+// shows winner
 function showWinner(winner){
     if (winner == "tie"){
         document.getElementById("whowins").innerHTML = "It is a tie!"
@@ -610,10 +625,12 @@ function showWinner(winner){
 
 }
 
+// resets board
 function reset(){
-    location.reload();
+    socket.emit('reset');
 }
 
+// displays instructions when hovered over
 function InstructionHover(game){
     if(game == 'TicTacToe'){
         document.getElementById("instructions").innerHTML = "Select a column to place your color.<br> Four in a row in any direction and you win! <br> First Player starts as <b> Red</b><br>And Second Player as <b> Blue</b>";

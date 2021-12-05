@@ -5,6 +5,7 @@
 <style = "text/css">
 </style>
 <link type = "text/css" rel = "stylesheet" href = "Rock_Paper_Scissors.css">
+<script src="/socket.io/socket.io.js"></script>
 <script src = "RockPaperScissors.js"></script>
 <title> Rock,Paper & Scissors </title>
 </head>
@@ -39,7 +40,8 @@
        <div class = "space">
          <br></div>
        </div>
-       <div class = "goback" onclick="window.open('../RoyalFlushMenu.html','_self');">
+       <!--OLD LINE: <div class = "goback" onclick="window.open('../RoyalFlushMenu.html','_self');"> -->
+       <div class = "goback" onclick="window.open('http://localhost:3001/TicTacToe/TicTacToe_page.html');">
          Main Menu
            </div>
 </body>

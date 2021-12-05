@@ -20,6 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet" >
 <title> Connect Four </title>
+<script src="/socket.io/socket.io.js"></script>
 <script src="ConnectFour.js"></script>
 </head>
 <body onload= "initializeBoard()">
@@ -96,7 +97,8 @@
     <div class = "space">
       <br></div>
     </div>
-    <div class = "goback" onclick="window.open('RoyalFlushMenu.html','_self');">
+    <!--OLD LINE: <div class = "goback" onclick="window.open('../RoyalFlushMenu.html','_self');"> -->
+    <div class = "goback" onclick="window.open('http://localhost:3001/TicTacToe/TicTacToe_page.html');">
       Main Menu
         </div>
     <div id = "alertrem">

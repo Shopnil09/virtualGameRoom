@@ -6,12 +6,12 @@ export const GameList = [
     },
     {
         title: 'Connect Four',
-        url: '/ConnectFour/ConnectFour.html',
+        url: 'http://localhost:3004/ConnectFour.html',
         cName: 'game-links'
     },
     {
         title: 'Rock Paper Scissors',
-        url: '/RockPaperScissors/Rock_Paper__Scissors.html',
+        url: 'http://localhost:3002/Rock_Paper_Scissors.html',
         cName: 'game-links'
     },
     
