@@ -7,7 +7,25 @@ Tic Tac Toe prototype that utilizes simple html commands
 is implemented properly via css/html.
 Supports local play where two players take turns at the computer 
 choosing spaces (referred to as 0-8).
+
+*
+* Michael Raffel socket update, local multiple-client multiplayer
+* Corresponding server is TicTacToeServer.js
+* 
+* -----------------------------------------------------------------------------
+* To test: 
+* 1- cd to "ticTacToeMultiplayer" folder
+* 2- enter "npm install" into the terminal
+* 3- enter "npm install -g nodemon" into the terminal
+* 4- enter "nodemon TicTacToeServer.js" into the terminal, without the quotes
+* 5- Then, open two tabs at address http://localhost:3000/TictacToe.html
+* -----------------------------------------------------------------------------
+*
+* let me know if you have any questions
 */
+
+// setting up the socket
+let socket = io();
 
 // representation of the spaces on the board, labeled 0-8
 var board = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
@@ -20,7 +38,44 @@ var isPlayingAgain;
 var singleplayer = false;
 var retry;
 
+//listens for server and updates turn for all clients
+socket.on('nextTurn', (data) => {
+    playerTurn = data;
+});
 
+//updates board space for all clients (game-logic)
+socket.on('updateSpace', (data) => {
+    board[data.space] = data.playerTurn;
+});
+
+//updates board space for all clients (user interface)
+socket.on('updateCSS', (data) => {
+    document.getElementById(data).value = playerTurn;
+});
+
+//updates retry variable for all clients
+socket.on('retry?', (data) => {
+    retry = data;
+});
+
+//triggers gameOverCheck for all clients
+socket.on('gameOverCheck', () => {
+    gameOverCheck();
+});
+
+//listens to server for whether to play singleplayer or multiplayer, 
+//updates for all clients
+socket.on('singleplayer?', (data) => {
+    singleplayer = data;
+    document.getElementById("oneplayer").disabled = true;
+    document.getElementById("twoplayer").disabled = true;
+	document.getElementById("button").disabled = true;
+});
+
+//listens to server for signal to reset for all clients
+socket.on('reset', () => {
+    location.reload();
+});
 
 
 
@@ -98,61 +153,91 @@ function boardFullCheck()
 }
 function fillSpace(space)
 {
-		//If player "X" just went, switch to player "O"
-		//and vice versa
-		if(playerTurn == "X")
-        {
-            playerTurn = "O";
-        }
-        else
-        {
+	//If player "X" just went, switch to player "O"
+	//and vice versa
+	if(playerTurn == "X")
+    {
+        playerTurn = "O";
+    }
+    else
+    {
 
-            playerTurn = "X";
+        playerTurn = "X";
             
-        }
+    }
+    //sends player turn to server
+    socket.emit('nextTurn', playerTurn);
 	
 
 	if (board[space] == " ")
 	{
-	board[space] = playerTurn;
-	switch(space)
-	{
-		case 0:
-			document.getElementById("b1").value = playerTurn;
-			break;
-		case 1:
-			document.getElementById("b2").value = playerTurn;
-			break;
-		case 2:
-			document.getElementById("b3").value = playerTurn;
-			break;
-		case 3:
-			document.getElementById("b4").value = playerTurn;
-			break;
-		case 4:
-			document.getElementById("b5").value = playerTurn;
-			break;
-		case 5:
-			document.getElementById("b6").value = playerTurn;
-			break;
-		case 6:
-			document.getElementById("b7").value = playerTurn;
-			break;
-		case 7:
-			document.getElementById("b8").value = playerTurn;
-			break;
-		case 8:
-			document.getElementById("b9").value = playerTurn;
-			break;
-	}
+        board[space] = playerTurn;
+
+        //sends board space and placed symbol to the server
+        socket.emit('updateSpace', {
+            space: space, 
+            playerTurn: playerTurn
+        });
+
+	    switch(space)
+	    {
+		    case 0:
+                //document.getElementById("b1").value = playerTurn;
+                //sends css element id to server
+                socket.emit('updateCSS', "b1");
+			    break;
+		    case 1:
+                //document.getElementById("b2").value = playerTurn;
+                //sends css element id to server
+                socket.emit('updateCSS', "b2");
+			    break;
+		    case 2:
+                //document.getElementById("b3").value = playerTurn;
+                //sends css element id to server
+                socket.emit('updateCSS', "b3");
+			    break;
+		    case 3:
+                //document.getElementById("b4").value = playerTurn;
+                //sends css element id to server
+                socket.emit('updateCSS', "b4");
+			    break;
+		    case 4:
+                //document.getElementById("b5").value = playerTurn;
+                //sends css element id to server
+                socket.emit('updateCSS', "b5");
+			    break;
+		    case 5:
+                //document.getElementById("b6").value = playerTurn;
+                //sends css element id to server
+                socket.emit('updateCSS', "b6");
+			    break;
+		    case 6:
+                //document.getElementById("b7").value = playerTurn;
+                //sends css element id to server
+                socket.emit('updateCSS', "b7");
+			    break;
+		    case 7:
+                //document.getElementById("b8").value = playerTurn;
+                //sends css element id to server
+                socket.emit('updateCSS', "b8");
+			    break;
+		    case 8:
+                //document.getElementById("b9").value = playerTurn;
+                //sends css element id to server
+                socket.emit('updateCSS', "b9");
+			    break;
+	    }
 	}
 	else
 	{
 		alert("please pick a space that is blank!");
         retry = true;
+        socket.emit('retry?', retry);
 	} 
 
 }
+
+//disables spaces
 function disable()
 {
 	document.getElementById("b1").disabled = true;
@@ -166,12 +251,16 @@ function disable()
     document.getElementById("b9").disabled = true;
 }
 
+//rests board
 function reset()
 {
-	location.reload();
+    //location.reload();
+    //signal to server to reset all clients
+    socket.emit('reset');
 	
 }
 
+// displays instructions when hovered over
 function InstructionHover(game){
     if(game == 'TicTacToe'){
         document.getElementById("instructions").innerHTML = "Game starts by just tapping on one of the box <br> First Player starts as <b>Player X</b><br>And Second Player as <b>Player O</b>";
@@ -323,16 +412,20 @@ function AILoseCheck()
     //-1 denotes it did not find a win condition
 }
 
+// changes between single and multiplayer depending on button press
 function PlayerSelection(button){
     if(button.value == "1"){
         singleplayer = true;
     }
+    //sends choice to server
+    socket.emit('singleplayer?', singleplayer);
+
     document.getElementById("oneplayer").disabled = true;
     document.getElementById("twoplayer").disabled = true;
 	document.getElementById("button").disabled = true;
 }
 
-
+// the gameflow for each round
 function GameRound(spot){
     fillSpace(spot);
     if (retry){
@@ -344,18 +437,30 @@ function GameRound(spot){
         {
             playerTurn = "X";
         } 
+        //sends player turn to server
+        socket.emit('nextTurn', playerTurn);
+
         retry = false;
+        //sends retry variable to server
+        socket.emit('retry?', retry);
+
         console.log("retry is "+ retry);
         return;
     }
-    gameOverCheck();
+    //gameOverCheck();
+    //signals server to trigger gameOverCheck()
+    socket.emit('gameOverCheck');
+
     if (!isGameOver && singleplayer){
         AIPlace();
-        gameOverCheck();
+        //gameOverCheck();
+        //signals server to trigger gameOverCheck()
+        socket.emit('gameOverCheck');
     }
     
 }
 
+// shows winner
 function showWinner(winner){
     if (winner == "tie"){
         document.getElementById("whowins").innerHTML = "It is a tie!"

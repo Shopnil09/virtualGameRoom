@@ -42,7 +42,7 @@ export default function Login({setIsLogin}) {
     return(
         <section>
             <div className="login">
-                <h2>Login</h2>
+                <h2 style={{backgroundColor: "black",  color: "white"}}>Login</h2>
                 <form onSubmit = {loginSubmit}>
                     <input type="email" name="email" id="login-email" placeholder="Email" required value={user.email} onChange={onChangeInput}/>
                     <input type="password" name="password" id="login-password" placeholder="Password" required value={user.password} autoComplete="true" onChange={onChangeInput}/>
@@ -51,7 +51,7 @@ export default function Login({setIsLogin}) {
                 </form> 
             </div> 
             <div className="register"> 
-            <h2>Register</h2>
+            <h2 style={{backgroundColor: "black",  color: "white"}}>Register</h2>
                 <form onSubmit={registerSubmit}>
                     <input type="name" name="name" id="register-name" placeholder="Name" required value={user.name} onChange={onChangeInput}/>
                     <input type="email" name="email" id="register-email" placeholder="Email" required value={user.email} onChange={onChangeInput} />

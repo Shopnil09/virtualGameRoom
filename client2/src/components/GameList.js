@@ -1,7 +1,7 @@
 export const GameList = [
     {
         title: 'Tit Tac Toe',
-        url: '/TicTacToe/TicTacToe_page.html',
+        url: 'http://localhost:3003/TicTacToe.html',
         cName: 'game-links'
     },
     {
