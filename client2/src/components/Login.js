@@ -31,9 +31,9 @@ export default function Login({setIsLogin}) {
                 email: user.email, password: user.password
             })
             setUser({name: '', email: '', password: ''}); 
-            localStorage.setItem('tokenStore', res.data.token); 
+            localStorage.setItem('tokenStore', res.data.token);
             setIsLogin(true); 
-            
+            //to log out 
         } catch (error) {
             error.response.data.msg && setErr(error.response.data.msg); 
         }

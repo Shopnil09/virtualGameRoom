@@ -5,7 +5,7 @@ export const MenuItems = [
         cName: 'nav-links'
     },
     {
-        title: 'Login In',
+        title: 'Login Out',
         url: '#',
         cName: 'nav-links'
     },

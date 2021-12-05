@@ -32,7 +32,9 @@ class Navbar extends Component {
                         )
                     })}
                 </ul>
-                <Button>Sign Up</Button>
+                {/*<Button>Sign Up</Button>*/}
+                <Button onClick={() => {localStorage.removeItem('tokenStore'); 
+                window.location.reload(false) }}>Log Out</Button>
             </nav>
 
         );
