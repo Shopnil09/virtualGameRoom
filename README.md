@@ -12,8 +12,26 @@ then cd ..
 
 then nodemon index.js 
 
-create a new terminal 
+create a new terminal or split terminal 
 
-cd into client2 
+cd into TicTacToe folder 
 
-npm start 
+nodemon TicTacToeServer.js 
+
+create a new terminal or split terminal 
+
+cd into ConnectFour folder 
+
+Nodemon C4server.js 
+
+create new terminal or split terminal 
+
+cd into RockPaperScissors 
+
+nodemon RPSserver.js 
+
+create new terminal or split terminal 
+
+cd into client2  
+
+npm start
