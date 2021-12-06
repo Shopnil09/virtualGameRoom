@@ -1,17 +1,17 @@
 export const GameList = [
     {
         title: 'Tit Tac Toe',
-        url: '/TicTacToe/TicTacToe_page.html',
+        url: 'http://localhost:3003/TicTacToe.html',
         cName: 'game-links'
     },
     {
         title: 'Connect Four',
-        url: '/ConnectFour/ConnectFour.html',
+        url: 'http://localhost:3004/ConnectFour.html',
         cName: 'game-links'
     },
     {
         title: 'Rock Paper Scissors',
-        url: '/RockPaperScissors/Rock_Paper__Scissors.html',
+        url: 'http://localhost:3002/Rock_Paper_Scissors.html',
         cName: 'game-links'
     },
     
