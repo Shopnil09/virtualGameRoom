@@ -1,4 +1,6 @@
-# VGR_Integration
+# VirtualGameRoom_Integration - Welcome!
+
+Clone the main branch, not the master branch
 
 Integration of the website 
 
@@ -35,3 +37,5 @@ create new terminal or split terminal
 cd into client2  
 
 npm start
+
+Enjoy!
